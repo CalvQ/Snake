@@ -1,7 +1,7 @@
 
 class Snake {
     enum Direction{
-        N, S, E, W, none
+        N, S, E, W
     }
     private int length;
     private int x;
@@ -16,8 +16,15 @@ class Snake {
     }
 
     void changeDir(Snake.Direction sDir){
-
-        this.dir = sDir;
+        if(this.dir == Direction.N && sDir!=Direction.S) {
+            this.dir = sDir;
+        }else if(this.dir == Direction.S && sDir!=Direction.N){
+            this.dir = sDir;
+        }else if(this.dir==Direction.E && sDir!=Direction.W){
+            this.dir = sDir;
+        }else if(this.dir==Direction.W && sDir!=Direction.E){
+            this.dir = sDir;
+        }
     }
 
     int getLength(){
@@ -28,6 +35,9 @@ class Snake {
     }
     int getY(){
         return this.y;
+    }
+    void incLength(){
+        this.length+= 1;
     }
 
     void move(){
@@ -43,8 +53,6 @@ class Snake {
                 break;
             case W:
                 this.y--;
-                break;
-            case none:
                 break;
             default:
                 System.out.println("how");
